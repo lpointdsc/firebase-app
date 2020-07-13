@@ -24,45 +24,16 @@ class WebViewController : UIViewController {
         view = wkMain
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        Analytics.setScreenName("APP_메인_웹뷰화면", screenClass: String(describing: ViewController.self))
-    }
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        //ShowAlertMessage(msg: "웹페이지가 로드됩니다")
+        // Webview javascript Enabled = true
         wkMain.configuration.preferences.javaScriptEnabled = true
         
-        // [START add_handler]
-        //wkMain.configuration.userContentController.add(self, name: "firebase")
-        // [END add_handler]
-        
-        
-        let url_Str = "http://seoby.kr/m/a.html"
+        let url_Str = "{{페이지URL}}"
         let url = URL(string: url_Str)
         let request = URLRequest(url:url!)
         wkMain.load(request)
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    @IBAction func movePrevpage(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true)
-    }
-    
-    func ShowAlertMessage(msg: String) {
-        let alert = UIAlertController(title:"알림", message: msg, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title:"ok", style: .default) { (action) in
-            
-        }
-        alert.addAction(okAction)
-        
-        present(alert, animated: true, completion: nil)
     }
 }
 
