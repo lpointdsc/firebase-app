@@ -7,7 +7,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WebviewActivity extends AppCompatActivity {
@@ -15,16 +14,6 @@ public class WebviewActivity extends AppCompatActivity {
     private WebView mWebView;
     private WebSettings mWebSettings;
 
-    public FirebaseInterface ieFirebase;
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        ieFirebase = new FirebaseInterface(this);
-        ieFirebase.setScreenName(this, "APP_메인_웹뷰화면");
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +25,8 @@ public class WebviewActivity extends AppCompatActivity {
 
         // 웹뷰 시작
         mWebView = (WebView) findViewById(R.id.webView);
-
+        
+        // 웹뷰 네이티브 인터페이스 등록
         mWebView.addJavascriptInterface(new AnalyticsWebInterface(this), AnalyticsWebInterface.TAG);
 
         mWebView.setWebViewClient(new WebViewClient()); // 클릭시 새창 안뜨게
@@ -60,6 +50,6 @@ public class WebviewActivity extends AppCompatActivity {
             }
         });
 
-        mWebView.loadUrl("http://seoby.kr/m/a.html"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        mWebView.loadUrl("{{페이지URL}}"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
     }
 }
